@@ -12,3 +12,6 @@ class ChanScrapyItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     pass
+class ChanImageItem(scrapy.Item):
+    imagedes = scrapy.Field()
+    image_url = scrapy.Field()

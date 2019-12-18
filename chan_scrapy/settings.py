@@ -24,6 +24,10 @@ FEED_URI = "chan.csv"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
+
+IMAGES_STORE = 'E:\Users\H\Documents\GitHub\4ChanScrape\chan_scrapy\DownloadedImages'
+
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
 
