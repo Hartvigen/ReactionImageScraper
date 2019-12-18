@@ -4,7 +4,7 @@ import scrapy
 
 class QuotesSpider(scrapy.Spider):
     name = 'quotes'
-    start_urls = ["http://www.4chan.org/a/"]
+    start_urls = ["http://www.quotes.toscrape.com/page/1"]
 
     def parse(self, response):
         self.log("I just visisted: " + response.url)
