@@ -1,20 +1,18 @@
 import scrapy
+from ..items import ChanImageItem
 
 
 class ChanCrawler(scrapy.Spider):
     name = "testCrawler"
-    start_urls = ["http://www.4chan.org/a/"]
+    start_urls = ["http://boards.4channel.org/a/"]
 
     def parse(self, response):
         self.log("I just visisted: " + response.url)
 
-        subjects = response.css(".subject::text").extract()
-        postmsg = response.css(".postMessage::text").extract()
+        item = ChanImageItem()
+        fil_urls = []
 
-        for item in zip(subjects, postmsg):
-            scraped_info = {
-                'subject' : item[0],
-                'postmsg' : item[1],
-            }
-
-            yield scraped_info
+        for fil in response.css(".fileThumb"):
+            fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())
+        item["file_urls"] = fil_urls
+        return item

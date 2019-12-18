@@ -15,8 +15,8 @@ SPIDER_MODULES = ['chan_scrapy.spiders']
 NEWSPIDER_MODULE = 'chan_scrapy.spiders'
 
 #Export as CSV Feed
-FEED_FORMAT = "csv"
-FEED_URI = "chan.csv"
+#FEED_FORMAT = "csv"
+#FEED_URI = "chan.csv"
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'chan_scrapy (+http://www.yourdomain.com)'
@@ -24,9 +24,9 @@ FEED_URI = "chan.csv"
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
-ITEM_PIPELINES = {'scrapy.pipelines.images.ImagesPipeline': 1}
+ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
 
-IMAGES_STORE = 'E:\Users\H\Documents\GitHub\4ChanScrape\chan_scrapy\DownloadedImages'
+FILES_STORE = 'chan_scrapy\DownloadedImages'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32

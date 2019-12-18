@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
-
+from ..items import ChanImageItem
 
 class ChanCrawler(scrapy.Spider):
     name = "chanCrawler"
@@ -18,11 +18,10 @@ class ChanCrawler(scrapy.Spider):
             yield scrapy.Request(url="http://boards.4channel.org/a/" + str(page), callback=self.parse_page)
 
     def parse_page(self, response):
-        subjects = response.css(".subject::text").extract()
+        item = ChanImageItem()
+        fil_urls = []
 
-        for item in zip(subjects):
-            scraped_info = {
-                'subject' : item[0]
-            }
-
-            yield scraped_info
+        for fil in response.css(".fileThumb"):
+            fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())
+        item["file_urls"] = fil_urls
+        return item
