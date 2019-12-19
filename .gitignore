@@ -2,6 +2,9 @@
 chan_scrapy/DownloadedImages/*
 chan_scrapy/KeptImages/*
 
+!chan_scrapy/DownloadedImages/.gitkeep
+!chan_scrapy/KeptImages/.gitkeep
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
