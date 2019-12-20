@@ -7,6 +7,7 @@ class ChanCrawler(scrapy.Spider):
     start_urls = ["http://boards.4channel.org/a/"]
 
     def parse(self, response):
+        #prints if the crawler is started correctly
         self.log("I just visisted: " + response.url)
         
         #first page is run seperately as "4channel.org/a/1" does not return a valid site
@@ -18,6 +19,11 @@ class ChanCrawler(scrapy.Spider):
             yield scrapy.Request(url="http://boards.4channel.org/a/" + str(page), callback=self.parse_page)
 
     def parse_page(self, response):
+
+        for thread in response.css("span.summary.desktop .replylink"):
+            yield scrapy.Request(url="http://boards.4channel.org/a/" + thread.css("a::attr(href)").extract_first(), callback=self.parse_thread)
+
+    def parse_thread(self, response):        
         item = ChanImageItem()
         fil_urls = []
 
