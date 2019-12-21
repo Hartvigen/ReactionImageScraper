@@ -1,7 +1,7 @@
 def has_transparency(img):
     if img.mode == "P":
         transparent = img.info.get("transparency", -1)
-        for _, index in img.getcolors():
+        for index in img.getcolors():
             if index == transparent:
                 print(index)
                 return True
