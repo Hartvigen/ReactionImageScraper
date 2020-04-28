@@ -24,6 +24,8 @@ NEWSPIDER_MODULE = 'chan_scrapy.spiders'
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
 
+MEDIA_ALLOW_REDIRECTS = True
+
 ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
 
 FILES_STORE = 'chan_scrapy\DownloadedImages'

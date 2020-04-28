@@ -1,6 +1,7 @@
 # Folders used for storing pictures
 chan_scrapy/DownloadedImages/*
 chan_scrapy/KeptImages/*
+chan_scrapy/KeptImages_1/*
 
 !chan_scrapy/DownloadedImages/.gitkeep
 !chan_scrapy/KeptImages/.gitkeep

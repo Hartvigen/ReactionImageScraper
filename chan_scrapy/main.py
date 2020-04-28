@@ -14,7 +14,7 @@ downloader.wait()
 
 for file in os.listdir(download_folder):
     filename = os.fsdecode(file)
-    if filename.endswith(".png") or filename.endswith(".jpg"):
+    if filename.endswith(".png"):
         im = Image.open(download_folder + "\\" + file, 'r')
         im.load() #file is loaded so that it closes sorting of images finishes, even if the image itself is not sorted
         if has_transparency(im):
