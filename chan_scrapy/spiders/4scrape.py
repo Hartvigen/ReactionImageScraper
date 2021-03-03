@@ -36,9 +36,9 @@ class ChanCrawler(scrapy.Spider):
         for fil in response.css(".fileThumb"):
             #save response as a string so we can check extensions
             picstring = str(fil.css("a::attr(href)").extract_first)
-
+            
             logging.debug("Response looks like: " + picstring + " does it end with designed?: " + str(picstring.endswith(tuple(ext), 0, len(picstring)-4)))
-            if(str(fil.css("a::attr(href)").extract_first).endswith(tuple(ext))):
+            if(picstring.endswith(tuple(ext), 0, len(picstring)-4)):
                 fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())
         item["file_urls"] = fil_urls
         return item

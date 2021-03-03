@@ -28,7 +28,7 @@ MEDIA_ALLOW_REDIRECTS = True
 
 ITEM_PIPELINES = {'scrapy.pipelines.files.FilesPipeline': 1}
 
-FILES_STORE = 'chan_scrapy\DownloadedImages'
+FILES_STORE = 'DownloadedImages'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
