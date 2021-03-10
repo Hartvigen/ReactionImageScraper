@@ -31,6 +31,7 @@ class ChanCrawler(scrapy.Spider):
         for fil in response.css(".fileThumb"):
             fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())
 
+        #Attempt to download image to memory as opposed to disk
         for image in fil_urls:
             data = requests.get(image).content
             data_bytes = io.BytesIO(data)

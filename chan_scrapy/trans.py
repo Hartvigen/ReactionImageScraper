@@ -1,3 +1,6 @@
+#Check for transparency in image
+#TODO: check edges of images for transparency rather than simply checking for a transparency layer
+
 def has_transparency(img):
     if img.mode == "P":
         transparent = img.info.get("transparency", -1)

@@ -10,7 +10,7 @@ def downloader(download_folder, kept_folder):
     #downloader = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
 
     #test downloader
-    downloader = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
+    downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
     
     downloader.wait()
 
