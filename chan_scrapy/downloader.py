@@ -10,9 +10,9 @@ def downloader(download_folder, kept_folder):
     #downloader = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
 
     #test downloader
-    downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
+    #downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
     
-    downloader.wait()
+    #downloader.wait()
 
     for file in os.listdir(download_folder):
         filename = os.fsdecode(file)
