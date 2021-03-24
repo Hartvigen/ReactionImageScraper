@@ -1,5 +1,4 @@
 #Check for transparency in image
-#TODO: check edges of images for transparency rather than simply checking for a transparency layer
 
 def has_transparency(img):
     if img.mode == "RGBA":
@@ -13,6 +12,10 @@ def has_transparency(img):
         transCountH = 0
         transCountW = 0
 
+        #We check the edges of the image for transparent pixels. Which, if present, in turn indicates 
+        #something akin to a reaction image. this method is used as previously images with just a single
+        #transparent pixel, or a transparent part focused on the middle was included 
+        #in the kept results
         for i in range(width):
             if px[i, 0][3] < 180:
                 transCountW += 1
@@ -29,13 +32,14 @@ def has_transparency(img):
             return True
 
 
-        #Old method using extremas for entire picture, was discarded due to edge case erros
+    #Old method using extremas for entire picture, this was discarded due to edge case erros however may still be used
+    #if we want any trasnparent image
         #extrema = img.getextrema()
         #if extrema[3][0] < 180:
         #    print(extrema)
         #    return True
 
-
+    #No idea how these images work, they pop up every now and then and this case catches 90% of valid cases
     elif img.mode == "P":
         print("Image is P")
         transparent = img.info.get("transparency", -1)
