@@ -28,4 +28,5 @@ def downloader(download_folder, kept_folder):
 
                 
     #remove any files not matching your criteria
-    #shutil.rmtree(download_folder)
+    if(options.deleteAfter == True):
+        shutil.rmtree(download_folder)
