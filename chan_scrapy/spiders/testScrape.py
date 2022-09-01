@@ -26,7 +26,6 @@ class ChanCrawler(scrapy.Spider):
         item = ChanImageItem()
         fil_urls = []
         trans_urls = []
-        #downloadImgs = False
 
         for fil in response.css(".fileThumb"):
             fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())

@@ -9,10 +9,10 @@ import options
 def downloader(download_folder, kept_folder):
     if(options.sortOnly == False):
         #full downloader
-        #downloader = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
+        downloader = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
 
         #test downloader
-        downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
+        #downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
 
         downloader.wait()
 
