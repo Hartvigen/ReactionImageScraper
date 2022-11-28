@@ -1,5 +1,7 @@
 from pickle import FALSE
 
 
-sortOnly = False
-deleteAfter = True
+sortOnly = True
+deleteAfter = False
+
+kept_folder = ""

@@ -1,6 +1,6 @@
 #Check for transparency in image
 
-def has_transparency(img):
+def has_transparency(img) -> bool:
     if img.mode == "RGBA":
 
         print("Image is RGBA")
