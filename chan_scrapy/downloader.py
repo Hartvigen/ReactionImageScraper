@@ -7,7 +7,7 @@ from trans import has_transparency
 import options
 
 def downloader(download_folder, kept_folder):
-    if(options.sortOnly is False):
+    if(options.sort_only[0] is False):
         #full downloader
         downloader_process = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
 
@@ -28,5 +28,5 @@ def downloader(download_folder, kept_folder):
 
                 
     #remove any files not matching your criteria
-    if(options.deleteAfter is True):
+    if(options.delete_after[0] is True):
         shutil.rmtree(download_folder)
