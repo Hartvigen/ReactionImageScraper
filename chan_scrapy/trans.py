@@ -39,7 +39,7 @@ def has_transparency(img) -> bool:
         #    print(extrema)
         #    return True
 
-    #No idea how these images work, they pop up every now and then and this case catches 90% of valid cases
+    #case for pallettised images, this catches about 90% of cases
     elif img.mode == "P":
         print("Image is P")
         transparent = img.info.get("transparency", -1)

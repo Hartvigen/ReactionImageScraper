@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 import scrapy
-import logging
 from ..items import ChanImageItem
-
+from ..trans import has_transparency
+import logging
+import requests
+import io
+from PIL import Image
 
 class ChanCrawler(scrapy.Spider):
-    name = "chanCrawler"
+    name = "chanCrawlerMemory"
     start_urls = ["http://boards.4channel.org/a/"]
 
     #parsing entire board, iterating pages on it
@@ -32,14 +35,23 @@ class ChanCrawler(scrapy.Spider):
     def parse_thread(self, response):        
         item = ChanImageItem()
         fil_urls = []
-        ext = [".png", ".webm", ".gif"]
+        trans_urls = []
+        ext = [".png"]
 
         for fil in response.css(".fileThumb"):
-            #save response as a string so we can check extensions
             picstring = str(fil.css("a::attr(href)").extract_first)
-            
+
             logging.debug("Response looks like: " + picstring + " does it end with designed?: " + str(picstring.endswith(tuple(ext), 0, len(picstring)-4)))
             if(picstring.endswith(tuple(ext), 0, len(picstring)-4)):
                 fil_urls.append("http:" + fil.css("a::attr(href)").extract_first())
-        item["file_urls"] = fil_urls
+
+        #Attempt to download image to memory as opposed to disk
+        for image in fil_urls:
+            data = requests.get(image).content
+            data_bytes = io.BytesIO(data)
+            img = Image.open(data_bytes)
+            if(has_transparency(img)):
+                trans_urls.append(image)
+
+        item["file_urls"] = trans_urls
         return item

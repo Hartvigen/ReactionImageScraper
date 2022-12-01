@@ -8,11 +8,27 @@ import options
 
 def downloader(download_folder, kept_folder):
     if(options.sort_only[0] is False):
-        #full downloader
-        downloader_process = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
+        downloader_process = subprocess
+        
+        print(options.selected_crawler)
+        match options.selected_crawler:
 
-        #test downloader
-        #downloader = subprocess.Popen('scrapy crawl testCrawler', shell=True)
+            #full downloader
+            case "Full Chan Crawler":
+                downloader_process = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
+
+            #test downloader
+            case "Memory Chan Crawler":
+                downloader_process = subprocess.Popen('scrapy crawl testCrawler', shell=True)
+
+            #full downloader memory
+            case "Test Crawler":
+                downloader_process = subprocess.Popen('scrapy crawl chanCrawlerMemory', shell=True)
+            
+            case _:
+                print("Something went wrong with chosing a crawler")
+
+        
 
         downloader_process.wait()
 
