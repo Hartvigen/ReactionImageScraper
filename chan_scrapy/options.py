@@ -14,4 +14,6 @@ sort_only = [False]
 #Deletes pictures without found transparency after run
 delete_after = [False]
 
+op_board = ["a"]
+
 selected_crawler = "Full Chan Crawler"

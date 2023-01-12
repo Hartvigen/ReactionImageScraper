@@ -1,12 +1,14 @@
 # -*- coding: utf-8 -*-
 import scrapy
 import logging
+from ..options import op_board
 from ..items import ChanImageItem
 
+board = op_board[0] + "/"
 
 class ChanCrawler(scrapy.Spider):
     name = "chanCrawler"
-    start_urls = ["http://boards.4channel.org/a/"]
+    start_urls = ["http://boards.4channel.org/" + board]
 
     #parsing entire board, iterating pages on it
     def parse(self, response):
@@ -14,19 +16,19 @@ class ChanCrawler(scrapy.Spider):
         self.log("I just visisted: " + response.url)
         
         #first page is run seperately as "4channel.org/a/1" does not return a valid site
-        yield scrapy.Request(url="http://boards.4channel.org/a/", callback=self.parse_page)
+        yield scrapy.Request(url="http://boards.4channel.org/" + board, callback=self.parse_page)
 
         #remaining pages are parsed
         page = 1
         while(page < 10):
             page += 1
-            yield scrapy.Request(url="http://boards.4channel.org/a/" + str(page), callback=self.parse_page)
+            yield scrapy.Request(url="http://boards.4channel.org/" + board + str(page), callback=self.parse_page)
 
     #page is parsed
     def parse_page(self, response):
 
         for thread in response.css("span.summary.desktop .replylink"):
-            yield scrapy.Request(url="http://boards.4channel.org/a/" + thread.css("a::attr(href)").extract_first(), callback=self.parse_thread)
+            yield scrapy.Request(url="http://boards.4channel.org/" + board + thread.css("a::attr(href)").extract_first(), callback=self.parse_thread)
 
     #thread on page is parsed
     def parse_thread(self, response):        
