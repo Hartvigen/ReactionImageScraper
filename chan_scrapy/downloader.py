@@ -15,7 +15,7 @@ def downloader(download_folder, kept_folder):
 
             #full downloader
             case "Full Chan Crawler":
-                downloader_process = subprocess.Popen('scrapy crawl chanCrawler', shell=True)
+                downloader_process = subprocess.Popen('scrapy crawl chanCrawler -a start_url=' + options.op_board[0], shell=True)
 
             #test downloader
             case "Memory Chan Crawler":

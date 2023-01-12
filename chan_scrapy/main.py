@@ -5,9 +5,15 @@ from tkinter import filedialog
 
 import options
 
-main = Tk()
+##Todo: 
+#Allow for selection of which files are downloaded (for example if I only want gifs/webms I can choose that)
+#Options should only be available for the full downloader, removed if another is chosen
+#Check for duplicate files in the kept folder
+#Create script that runs scraper once a day at a specific time, set it up on Raspberry Pi
+
+main = Tk() 
 main.title("Test")
-main.geometry('200x200')
+main.geometry('200x250')
 
 def select_folder():
     old = options.kept_folder
@@ -35,8 +41,20 @@ def check_command(check_button, options_variable):
         options_variable[0] = False
         print(options.delete_after[0])
 
+def change_board(*args):
+    options.op_board[0] = board_field.get()
+
+    if options.op_board[0] is "":
+        options.op_board[0] = "a"
+
+
+
 crawler_options = ["Full Chan Crawler", "Memory Chan Crawler", "Test Crawler"]
 
+board_field = Entry(main)
+board_field.pack()
+
+board_field.bind('<KeyRelease>', change_board)
 
 clicked = StringVar()
 clicked.set("Select Crawler")
